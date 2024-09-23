@@ -1,0 +1,38 @@
+/*
+Theme Name:   innovio child theme
+Description:  Write here a brief description about your child-theme
+Author:       devinegl0be
+Author URL:   Write here the author's blog or website url
+Template:     innovio
+Version:      1.0
+License:      GNU General Public License v2 or later
+License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  innovio-child
+*/
+
+/* Write here your own personal stylesheet */
+/* .mkdf-vertical-align-containers .mkdf-position-right{display:none;}
+.mkdf-vertical-align-containers .mkdf-position-center {
+    right: 0;
+    text-align: right !important;
+}*/
+a.mkdf-side-menu-button-opener.mkdf-icon-has-hover.mkdf-side-menu-button-opener-predefined {
+    display: none;
+}
+.mkdf-search-opener{display:none !important;}
+.mkdf-page-footer .mkdf-footer-top-holder .mkdf-footer-top-inner.mkdf-grid {
+    padding: 40px 0 40px;
+}
+.mkdf-page-footer .mkdf-footer-top-holder .mkdf-footer-top-inner.mkdf-grid {
+    padding: 50px 0 30px !important;
+}
+.mkdf-page-footer .mkdf-footer-bottom-holder .mkdf-footer-bottom-inner.mkdf-grid {
+    padding: 15px 0 12px !important;
+}
+.mkdf-drop-down .second .inner ul li a{
+ padding:7px 15px !important;
+}
+.mkdf-drop-down .narrow .second .inner ul{padding:15px 0 !important}
+.mkdf-main-menu ul li a{
+ font-size:14px !important;
+}
