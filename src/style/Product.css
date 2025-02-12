@@ -1,0 +1,108 @@
+.product-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #070763, #16213e); /* Match the home page background */
+  color: #fff;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.product-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.1); /* Adds slight transparency for depth */
+  padding: 2rem;
+  border-radius: 12px;
+  line-height: 1.6;
+}
+
+.product-image {
+  width: 250px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #fff; /* Highlights the product image */
+}
+
+.product-details {
+  flex: 1;
+  min-width: 300px;
+}
+
+.product-heading-container {
+  margin-bottom: 1rem;
+  white-space: nowrap; /* Ensure the heading is in a single line */
+}
+
+.product-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #ffcc00; /* Highlight title in yellow */
+}
+
+.product-description {
+  color: #dcdcdc; /* Light gray for better readability */
+  margin-bottom: 16px;
+}
+
+.product-section-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #ffcc00; /* Yellow for section titles */
+}
+
+.product-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+  color: #f0f0f0; /* Lighter text */
+}
+
+.product-price {
+  font-size: 18px;
+  color: #ff6600;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+.product-testimonial {
+  font-style: italic;
+  color: #e0e0e0; /* Light gray */
+  margin-top: 12px;
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+}
+
+.product-header h1 {
+  font-size: 2.5em;
+  color: #fff;
+  margin-bottom: 0.5em;
+}
+
+.product-header h2 {
+  font-size: 1.5em;
+  color: #ccc;
+  margin-bottom: 2em;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .product-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: auto;
+  }
+}

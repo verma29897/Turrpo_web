@@ -1,0 +1,144 @@
+.blog-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #070763, #16213e); /* Match the home page background */
+  color: #fff;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.blog-header h1 {
+  font-size: 2.5em;
+  color: #fff;
+  margin-bottom: 0.5em;
+}
+
+.blog-header h2 {
+  font-size: 1.5em;
+  color: #ccc;
+  margin-bottom: 2em;
+}
+
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+@media (min-width: 768px) {
+  .blog-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+
+.blog-item {
+  background: #fff;
+  padding: 1.5em;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1em;
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (min-width: 768px) {
+  .blog-item {
+    width: 45%;
+  }
+}
+
+.blog-item h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 0.5em;
+}
+
+.blog-item p {
+  font-size: 1em;
+  color: #666;
+  line-height: 1.6;
+}
+
+.blog-content {
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+.blog-content p {
+  font-size: 1.2em;
+  color: #eee;
+  margin-bottom: 1em;
+}
+
+.blog-post {
+  margin-bottom: 2em;
+}
+
+.blog-post h3 {
+  font-size: 2em;
+  color: #ffcc00; /* Highlight color */
+  margin-bottom: 0.5em;
+}
+
+.blog-post p {
+  font-size: 1.2em;
+  color: #eee;
+  margin-bottom: 1em;
+}
+
+.blog-post ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.blog-post li {
+  font-size: 1.2em;
+  color: #eee;
+  margin-bottom: 0.5em;
+}
+
+.attack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  gap: 30px;
+  margin: 0px;
+  justify-content: center;
+}
+
+
+
+.attack-container {
+  background: rgba(255, 255, 255, 0.1); /* Adds slight transparency for depth */
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  width: 400px;
+  height: auto;
+}
+
+.attack-container h4 {
+  font-size: 1.8em;
+  color: #ffcc00; /* Highlight color */
+  margin-bottom: 0.5em;
+}
+
+.attack-container p {
+  font-size: 1.2em;
+  color: #eee;
+  margin-bottom: 0.5em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .attack-grid {
+    grid-template-columns: 1fr; /* Single column on smaller screens */
+  }
+}
