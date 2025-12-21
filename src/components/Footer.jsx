@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import "../style/Footer.css";
 
@@ -13,7 +14,7 @@ const Footer = () => {
             <span>Turrpo Ideas</span>
           </div>
           <p>
-            Since 1999, Bomis has been a trusted leader in cybersecurity,
+            Since 2021, Turrpo Ideas has been a trusted leader in cybersecurity,
             protecting digital assets.
           </p>
           {/* Social Media Icons */}
@@ -70,29 +71,34 @@ const Footer = () => {
           <h3>Quick Link</h3>
           <ul>
             <li>
-              <a href="/about" className="hover:text-purple-500">
-                About 
-              </a>
+              <Link to="/about" className="hover:text-purple-500">
+                About
+              </Link>
             </li>
             <li>
-              <a href="/services" className="hover:text-purple-500">
+              <Link to="/services" className="hover:text-purple-500">
                 Our Services
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-purple-500">
+              <Link to="/product" className="hover:text-purple-500">
                 Pricing Plan
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-purple-500">
+              <Link to="/resources" className="hover:text-purple-500">
                 Our Projects
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-purple-500">
+              <Link to="/about" className="hover:text-purple-500">
                 Our Team
-              </a>
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="hover:text-purple-500">
+                Contact Us
+              </Link>
             </li>
           </ul>
         </div>

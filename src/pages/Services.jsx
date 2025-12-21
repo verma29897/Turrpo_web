@@ -6,7 +6,7 @@ const Services = () => {
   return (
     <div className="secur-container">
       <header className="secur-header">
-        <h1>Why Choose BOMIS</h1>
+        <h1>Why Choose Turrpo Ideas</h1>
         <h2>Advanced Security Solutions For A Digital Age</h2>
       </header>
 
@@ -17,7 +17,7 @@ const Services = () => {
 
       <section className="secur-intro">
         <p>
-          For over two decades, Bomis has been at the forefront of cybersecurity,
+          For over two decades, Turrpo Ideas has been at the forefront of cybersecurity,
           adapting to the ever-evolving threat landscape. Our seasoned professionals
           have a deep understanding of the latest attack vectors.
         </p>
@@ -44,6 +44,7 @@ const Services = () => {
         <h3>Our Cyber Security Services</h3>
         <div className="service-list">
           <div className="service-item">
+            <span className="service-icon">🌐</span>
             <h4>Network Security</h4>
             <p>
               Protect your network infrastructure with our advanced network security solutions.
@@ -51,6 +52,7 @@ const Services = () => {
             </p>
           </div>
           <div className="service-item">
+            <span className="service-icon">💻</span>
             <h4>Endpoint Security</h4>
             <p>
               Secure all endpoints including desktops, laptops, and mobile devices.
@@ -58,6 +60,7 @@ const Services = () => {
             </p>
           </div>
           <div className="service-item">
+            <span className="service-icon">☁️</span>
             <h4>Cloud Security</h4>
             <p>
               Ensure the security of your cloud environments with our comprehensive cloud security services.
@@ -65,6 +68,7 @@ const Services = () => {
             </p>
           </div>
           <div className="service-item">
+            <span className="service-icon">🔐</span>
             <h4>Application Security</h4>
             <p>
               Protect your applications from vulnerabilities and attacks.

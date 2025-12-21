@@ -11,7 +11,7 @@ const About = () => {
 
       <div className="about-content">
         <p>
-          Turrpo Ideas has been a leader in the cybersecurity industry since 1999.
+          Turrpo Ideas has been a leader in the cybersecurity industry since 2021.
           Our mission is to provide top-notch security solutions to protect your digital assets.
         </p>
         <p>
