@@ -1,9 +1,10 @@
 /* General Footer Styling */
 footer {
-  background-color: #0a0a23;
+  background-color: #0f172a;
   color: #ffffff;
   padding: 2rem 1rem;
   font-family: Arial, sans-serif;
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 /* Footer Layout */
@@ -45,7 +46,7 @@ footer .branding .logo {
 }
 
 footer .branding p {
-  color: #b0b0b0;
+  color: #cbd5e1;
   line-height: 1.5;
 }
 
@@ -63,7 +64,7 @@ footer .social-icons a {
 }
 
 footer .social-icons a:hover {
-  color: #9d4edd;
+  color: #8b5cf6;
 }
 
 /* Section Titles */
@@ -91,7 +92,7 @@ footer ul li a {
 }
 
 footer ul li a:hover {
-  color: #9d4edd;
+  color: #8b5cf6;
 }
 
 /* Contact Information */
@@ -100,13 +101,13 @@ footer .contact-info {
 }
 
 footer .contact-info i {
-  color: #9d4edd;
+  color: #8b5cf6;
   margin-right: 0.5rem;
 }
 
 /* Bottom Section */
 footer .bottom-section {
-  border-top: 1px solid #444;
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
   margin-top: 2rem;
   padding-top: 1rem;
   text-align: center;
@@ -120,5 +121,5 @@ footer .bottom-section a {
 }
 
 footer .bottom-section a:hover {
-  color: #9d4edd;
+  color: #8b5cf6;
 }
