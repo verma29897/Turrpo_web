@@ -6,11 +6,11 @@
   background: rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+  border-bottom: 1px solid rgba(14, 165, 233, 0.1);
   color: white;
   box-shadow: 
     0 4px 24px rgba(0, 0, 0, 0.3),
-    0 0 1px rgba(139, 92, 246, 0.2);
+    0 0 1px rgba(14, 165, 233, 0.2);
   min-height: 75px;
   position: sticky;
   top: 0;
@@ -26,8 +26,8 @@
   right: 0;
   bottom: 0;
   background: 
-    linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
-    linear-gradient(225deg, rgba(6, 182, 212, 0.03) 0%, transparent 50%);
+    linear-gradient(135deg, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(56, 189, 248, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }
@@ -62,7 +62,7 @@
 .brand-name {
   font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -71,7 +71,7 @@
 }
 
 .navbar-logo a:hover .brand-name {
-  background: linear-gradient(135deg, #a78bfa 0%, #22d3ee 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #7dd3fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -108,14 +108,14 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+  background: linear-gradient(90deg, #0ea5e9, #38bdf8);
   border-radius: 2px;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-links li a:hover {
   color: #ffffff;
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(14, 165, 233, 0.1);
 }
 
 .navbar-links li a:hover::before {
@@ -123,8 +123,8 @@
 }
 
 .navbar-links li a.active {
-  color: #8b5cf6;
-  background: rgba(139, 92, 246, 0.15);
+  color: #0ea5e9;
+  background: rgba(14, 165, 233, 0.15);
 }
 
 .navbar-links li a.active::before {
@@ -133,7 +133,7 @@
 
 .navbar-button {
   padding: 0.75rem 1.75rem;
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
   color: white;
   border: none;
   border-radius: 10px;
@@ -142,7 +142,7 @@
   font-weight: 600;
   font-size: 0.95rem;
   box-shadow: 
-    0 4px 14px rgba(139, 92, 246, 0.3),
+    0 4px 14px rgba(14, 165, 233, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
@@ -160,10 +160,10 @@
 }
 
 .navbar-button:hover {
-  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   transform: translateY(-2px);
   box-shadow: 
-    0 8px 24px rgba(139, 92, 246, 0.4),
+    0 8px 24px rgba(14, 165, 233, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
@@ -183,11 +183,11 @@
   padding: 0.5rem;
   border-radius: 8px;
   transition: all 0.3s ease;
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(14, 165, 233, 0.1);
 }
 
 .navbar-toggle:hover {
-  background: rgba(139, 92, 246, 0.2);
+  background: rgba(14, 165, 233, 0.2);
   color: #ffffff;
 }
 
@@ -205,8 +205,8 @@
   padding: 1.5rem;
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(139, 92, 246, 0.1);
-  border-top: 1px solid rgba(139, 92, 246, 0.2);
+    inset 0 1px 0 rgba(14, 165, 233, 0.1);
+  border-top: 1px solid rgba(14, 165, 233, 0.2);
   gap: 0.5rem;
   animation: slideDown 0.3s ease-out;
 }

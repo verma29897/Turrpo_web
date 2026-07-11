@@ -4,7 +4,7 @@ footer {
   color: #ffffff;
   padding: 2rem 1rem;
   font-family: Arial, sans-serif;
-  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  border-top: 1px solid rgba(14, 165, 233, 0.2);
 }
 
 /* Footer Layout */
@@ -64,7 +64,7 @@ footer .social-icons a {
 }
 
 footer .social-icons a:hover {
-  color: #8b5cf6;
+  color: #0ea5e9;
 }
 
 /* Section Titles */
@@ -92,7 +92,7 @@ footer ul li a {
 }
 
 footer ul li a:hover {
-  color: #8b5cf6;
+  color: #0ea5e9;
 }
 
 /* Contact Information */
@@ -101,13 +101,13 @@ footer .contact-info {
 }
 
 footer .contact-info i {
-  color: #8b5cf6;
+  color: #0ea5e9;
   margin-right: 0.5rem;
 }
 
 /* Bottom Section */
 footer .bottom-section {
-  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  border-top: 1px solid rgba(14, 165, 233, 0.2);
   margin-top: 2rem;
   padding-top: 1rem;
   text-align: center;
@@ -121,5 +121,5 @@ footer .bottom-section a {
 }
 
 footer .bottom-section a:hover {
-  color: #8b5cf6;
+  color: #0ea5e9;
 }

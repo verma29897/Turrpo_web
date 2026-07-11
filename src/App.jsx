@@ -12,6 +12,7 @@ import CaseStudies from './pages/CaseStudies';
 import Compliance from './pages/Compliance';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import { DemoBackgroundPaths } from './components/ui/demo';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/resources" element={<Resources />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/compliance" element={<Compliance />} />
+        <Route path="/background-paths" element={<DemoBackgroundPaths />} />
       </Routes>
       <Footer />
     </Router>
