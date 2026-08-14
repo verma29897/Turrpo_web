@@ -1,66 +1,175 @@
 /*
- * Tailwind v4 entry — preflight (base reset) is intentionally NOT imported
- * so Tailwind does not alter the styling of the existing plain-CSS pages.
+ * Tailwind v4 entry.
+ *
+ * Preflight used to be left out so it would not disturb the hand-written CSS
+ * in src/style/. Those stylesheets and the pages that imported them are gone,
+ * so it is imported now. Without it every <ul>/<ol> on the site kept the
+ * browser's default bullets and 40px indent (the navbar included) and every
+ * bare <a> kept the default blue underline.
  */
 @layer theme, base, components, utilities;
 
 @import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 
 /* shadcn uses class-based dark mode (<html class="dark">), not the OS setting */
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Turrpo Ideas design system (design-system/turrpo-ideas/MASTER.md)
- * "Trust & Authority" — navy primary, blue CTA, slate neutrals.
+ * Enterprise security-vendor palette (Cisco / Palo Alto / Fortinet family):
+ * light page, deep blue primary, cyan secondary, dark navy for the bands that
+ * need to anchor the page (footer, closing CTA, the live traffic panel).
+ *
+ * The site ships LIGHT: index.html carries no `dark` class, so `:root` wins.
+ * The `.dark` block further down is not dead. It is scoped deliberately, by
+ * putting `dark` on a subtree, which is how the live traffic panel renders as
+ * a dark product screenshot inside a white page.
+ *
+ * Surface ladder, page upward: --background < --band-muted < --card. Cards are
+ * pure white so they lift off both bands. --band-deep is the navy anchor band
+ * and carries `dark` with it, so token-based children invert automatically.
  */
 :root {
-  --background: #f8fafc;
-  --foreground: #020617;
+  --background: #f4f6f9;
+  --foreground: #0b1f33;
   --card: #ffffff;
-  --card-foreground: #020617;
+  --card-foreground: #0b1f33;
   --popover: #ffffff;
-  --popover-foreground: #020617;
-  --primary: #0369a1;
+  --popover-foreground: #0b1f33;
+
+  /* Deep enterprise blue. 8.6:1 on white, so it is safe for body-size links
+     and not only for large headings. */
+  --primary: #0d47a1;
   --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #475569;
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
-  --destructive: hsl(0 84.2% 60.2%);
-  --destructive-foreground: hsl(0 0% 98%);
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #0369a1;
-  --navy: #0f172a;
-  --navy-muted: #334155;
+
+  --secondary: #e6ecf4;
+  --secondary-foreground: #0b1f33;
+  --muted: #e6ecf4;
+  --muted-foreground: #44576d;
+  --accent: #e6ecf4;
+  --accent-foreground: #0b1f33;
+  --destructive: #c0261f;
+  --destructive-foreground: #ffffff;
+  --border: #d7dfea;
+  --input: #d7dfea;
+  --ring: #0d47a1;
+  --navy: #0b2545;
+  --navy-muted: #44576d;
   --radius: 0.5rem;
+
+  --band-muted: #eef2f7;
+  --band-deep: #0b2545;
+
+  /* Cyan is the highlight, used for rules, glyph accents and the dark bands.
+     It is NOT used for small text on white: #0e7490 is the readable step. */
+  --cyan: #00bceb;
+  --cyan-ink: #0e7490;
+
+  --success: #046b4e;
+  --danger: #b3261e;
+  --subtle: #5a6b7f;
 }
 
+/*
+ * Dark palette: navy-tinted rather than neutral slate.
+/*
+ * Navy inversion, applied to a SUBTREE rather than the document.
+ *
+ * `Section tone="deep"` and the footer carry this class, which is what lets a
+ * navy band host token-based children (text-foreground, bg-card, border-border)
+ * without any of them hardcoding light-on-dark colours.
+ *
+ * Surface ladder inside the navy scope: background #0b2545 < card #12314f.
+ * `primary` has to be re-picked here: the light theme's #0d47a1 only reaches
+ * 1.4:1 on navy, so the dark scope uses a bright cyan-blue instead.
+ */
 .dark {
-  --background: #020617;
+  --background: #0b2545;
+  --foreground: #ffffff;
+  --card: #12314f;
+  --card-foreground: #ffffff;
+  --popover: #0b2545;
+  --popover-foreground: #ffffff;
+  --primary: #5ac8fa;
+  --primary-foreground: #06182e;
+  --secondary: #1b3a5c;
+  --secondary-foreground: #ffffff;
+  --muted: #1b3a5c;
+  --muted-foreground: #b9c9d9;
+  --accent: #1b3a5c;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #23446a;
+  --input: #23446a;
+  --ring: #5ac8fa;
+  --navy: #ffffff;
+  --navy-muted: #b9c9d9;
+
+  --band-muted: #0e2a4d;
+  --band-deep: #06182e;
+
+  --cyan: #00bceb;
+  --cyan-ink: #5ac8fa;
+
+  --success: #34d399;
+  --danger: #fca5a5;
+  --subtle: #9fb3c8;
+}
+
+/*
+ * Near-black slate scope, used by the home page only (src/pages/Home.tsx) and
+ * by the header while the home page is showing.
+ *
+ * Always applied together with `dark`, never instead of it: `dark` is what the
+ * `dark:` variant selector keys off (the hero's BackgroundPaths uses those
+ * utilities), and this block then overrides the navy token values with the
+ * near-black ones. It must stay AFTER `.dark` in this file, because the two
+ * have equal specificity and source order is what decides which wins on an
+ * element carrying both.
+ *
+ * Ladder: background #060b18 < band-muted #0b1324 < band-deep #101b30
+ *                                                 < card #141f36
+ *
+ * The second selector covers nesting: `Section tone="deep"` and CtaBand carry
+ * their own `dark`, which would otherwise re-assert the navy values inside the
+ * near-black page. `.dark-slate .dark` outranks a bare `.dark`, so a nested
+ * band stays in the same family as the page around it.
+ */
+.dark-slate,
+.dark-slate .dark {
+  --background: #060b18;
   --foreground: #f8fafc;
-  --card: #0f172a;
+  --card: #141f36;
   --card-foreground: #f8fafc;
-  --popover: #0f172a;
+  --popover: #0e1626;
   --popover-foreground: #f8fafc;
-  --primary: #0ea5e9;
-  --primary-foreground: #020617;
-  --secondary: #1e293b;
+  --primary: #38bdf8;
+  --primary-foreground: #041020;
+  --secondary: #1c2942;
   --secondary-foreground: #f8fafc;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --accent: #1e293b;
+  --muted: #1c2942;
+  --muted-foreground: #a3b1c6;
+  --accent: #1c2942;
   --accent-foreground: #f8fafc;
-  --destructive: hsl(0 62.8% 30.6%);
-  --destructive-foreground: hsl(0 0% 98%);
-  --border: #1e293b;
-  --input: #1e293b;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #24334e;
+  --input: #24334e;
   --ring: #38bdf8;
   --navy: #e2e8f0;
-  --navy-muted: #94a3b8;
+  --navy-muted: #a3b1c6;
+
+  --band-muted: #0b1324;
+  --band-deep: #101b30;
+
+  --cyan: #00bceb;
+  --cyan-ink: #67e8f9;
+
+  --success: #34d399;
+  --danger: #f87171;
+  --subtle: #8fa0b8;
 }
 
 @theme inline {
@@ -85,11 +194,165 @@
   --color-ring: var(--ring);
   --color-navy: var(--navy);
   --color-navy-muted: var(--navy-muted);
+  --color-band-muted: var(--band-muted);
+  --color-band-deep: var(--band-deep);
+  --color-cyan: var(--cyan);
+  --color-cyan-ink: var(--cyan-ink);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-subtle: var(--subtle);
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
   --font-sans: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-heading: "Lexend", ui-sans-serif, system-ui, sans-serif;
+  /* Log lines, counters and spec figures: anything meant to read as machine
+     output. Falls back to the platform mono if the webfont never loads. */
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    Consolas, "Liberation Mono", monospace;
+}
+
+/*
+ * Motion tokens. Applied through `motion-safe:` so everything below is
+ * skipped entirely for users who ask for reduced motion.
+ */
+@theme {
+  --animate-toast-in: toast-in 200ms ease-out;
+  --animate-drawer-in: drawer-in 200ms ease-out;
+
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes drawer-in {
+    from {
+      opacity: 0;
+      transform: translateY(-0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/*
+ * Product landing page (src/pages/Product.tsx).
+ *
+ * The looping ones (packet-flow, threat-pop, node-pulse) are decoration on the
+ * hero diagram; the one-shot ones announce state. All are applied through
+ * `motion-safe:` at the call site, and every animated element is styled so its
+ * *end* state is the default, so with animations suppressed the diagram is
+ * static and the checkmark is simply drawn.
+ */
+@theme {
+  --animate-packet-flow: packet-flow 2.6s linear infinite;
+  --animate-threat-pop: threat-pop 7s ease-in-out infinite;
+  --animate-node-pulse: node-pulse 3s ease-out infinite;
+  --animate-feed-in: feed-in 320ms ease-out;
+  --animate-check-pop: check-pop 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-check-circle: check-circle 500ms ease-out;
+  --animate-check-draw: check-draw 320ms 380ms ease-out backwards;
+
+  /* Travels the full width of its track; the dot itself is centred by a
+     negative margin at the call site. */
+  @keyframes packet-flow {
+    0% {
+      left: 0%;
+      opacity: 0;
+    }
+    12% {
+      opacity: 1;
+    }
+    88% {
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+  }
+
+  /* Visible for ~1.5s out of every 7s, so the hero has a beat rather than a
+     badge that is permanently lit. */
+  @keyframes threat-pop {
+    0%,
+    64% {
+      opacity: 0;
+      transform: translateY(0.35rem) scale(0.92);
+    }
+    68%,
+    86% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    92%,
+    100% {
+      opacity: 0;
+      transform: translateY(-0.35rem) scale(0.98);
+    }
+  }
+
+  @keyframes node-pulse {
+    0% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+    70%,
+    100% {
+      opacity: 0;
+      transform: scale(1.45);
+    }
+  }
+
+  @keyframes feed-in {
+    from {
+      opacity: 0;
+      transform: translateY(-0.4rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes check-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* r=24 → circumference ≈ 151; path length ≈ 32. Both animate the dash
+     *array* rather than the offset so the resting state is the drawn mark. */
+  @keyframes check-circle {
+    from {
+      stroke-dasharray: 0 151;
+    }
+    to {
+      stroke-dasharray: 151 151;
+    }
+  }
+
+  @keyframes check-draw {
+    from {
+      stroke-dasharray: 0 32;
+    }
+    to {
+      stroke-dasharray: 32 32;
+    }
+  }
 }
 
 /*

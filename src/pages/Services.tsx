@@ -8,7 +8,13 @@ import {
     Network,
     SlidersHorizontal,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Card, CardDescription, CardIcon, CardTitle } from "@/components/ui/card";
+import { CtaBand } from "@/components/ui/cta-band";
+import { PageHeader } from "@/components/ui/page-header";
+import { PageHero } from "@/components/ui/page-hero";
+import { Section } from "@/components/ui/section";
+import { StatGrid } from "@/components/ui/stat-grid";
+import { SITE } from "@/constants/site";
 
 const FEATURES = [
     {
@@ -62,142 +68,75 @@ const ACHIEVEMENTS = [
 const Services = () => {
     return (
         <main className="bg-background text-foreground">
-            {/* Header */}
-            <section className="bg-slate-900/50 border-b border-border">
-                <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24 text-center">
-                    <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
-                        Why Choose Turrpo Ideas
-                    </p>
-                    <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6 max-w-3xl mx-auto">
-                        Advanced Security Solutions for a Digital Age
-                    </h1>
-                    <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                        Turrpo Ideas has been at the forefront of cybersecurity,
-                        adapting to the ever-evolving threat landscape. Our
-                        seasoned professionals have a deep understanding of the
-                        latest attack vectors.
-                    </p>
-                </div>
-            </section>
+            <PageHero
+                eyebrow={`Why Choose ${SITE.name}`}
+                title="Advanced security solutions for a digital age"
+                description={`${SITE.name} has been at the forefront of cybersecurity, adapting to the ever-evolving threat landscape. Our seasoned professionals have a deep understanding of the latest attack vectors.`}
+            />
 
             {/* Differentiators */}
-            <section className="bg-background">
-                <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20">
-                    <div className="grid md:grid-cols-2 gap-6">
-                        {FEATURES.map(({ icon: Icon, title, description }) => (
-                            <div
-                                key={title}
-                                className="rounded-xl border border-border bg-card p-8 shadow-sm"
-                            >
-                                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-sky-500/10">
-                                    <Icon
-                                        className="h-5 w-5 text-primary"
-                                        aria-hidden="true"
-                                    />
-                                </div>
-                                <h2 className="text-xl font-semibold text-white mb-3">
-                                    {title}
-                                </h2>
-                                <p className="text-muted-foreground leading-relaxed">
-                                    {description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
+            <Section>
+                <div className="grid gap-6 md:grid-cols-2">
+                    {FEATURES.map(({ icon, title, description }) => (
+                        <Card key={title} padding="lg">
+                            <CardIcon icon={icon} className="mb-4" />
+                            <CardTitle as="h2" className="text-xl mb-3">
+                                {title}
+                            </CardTitle>
+                            <p className="text-muted-foreground leading-relaxed">
+                                {description}
+                            </p>
+                        </Card>
+                    ))}
                 </div>
-            </section>
+            </Section>
 
             {/* Services grid */}
-            <section className="bg-slate-900/50 border-y border-border">
-                <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24">
-                    <div className="text-center max-w-2xl mx-auto mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-                            Our Cyber Security Services
-                        </h2>
-                        <p className="text-lg text-muted-foreground leading-relaxed">
-                            Layered protection across your network, devices,
-                            cloud, and applications.
-                        </p>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 gap-6">
-                        {SERVICES.map(({ icon: Icon, title, description }) => (
-                            <div
-                                key={title}
-                                className="group rounded-xl border border-border bg-card p-8 shadow-sm transition-all duration-200 hover:shadow-md hover:border-sky-500/60"
+            <Section tone="muted" border="y" padding="lg">
+                <PageHeader
+                    title="Our cyber security services"
+                    description="Layered protection across your network, devices, cloud, and applications."
+                    className="mb-12"
+                />
+                <div className="grid gap-6 sm:grid-cols-2">
+                    {SERVICES.map(({ icon, title, description }) => (
+                        <Card key={title} padding="lg" hover className="group">
+                            <CardIcon icon={icon} className="mb-4" />
+                            <CardTitle className="mb-3">{title}</CardTitle>
+                            <CardDescription className="mb-5 text-base text-muted-foreground">
+                                {description}
+                            </CardDescription>
+                            <Link
+                                to="/contact"
+                                className="inline-flex items-center gap-1.5 rounded-md text-sm font-semibold text-primary
+                                transition-colors duration-200 hover:text-primary/80
+                                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                             >
-                                <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-sky-500/10">
-                                    <Icon
-                                        className="h-5 w-5 text-primary"
-                                        aria-hidden="true"
-                                    />
-                                </div>
-                                <h3 className="text-lg font-semibold text-white mb-3">
-                                    {title}
-                                </h3>
-                                <p className="text-muted-foreground leading-relaxed mb-5">
-                                    {description}
-                                </p>
-                                <Link
-                                    to="/contact"
-                                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                >
-                                    Talk to an expert
-                                    <ArrowRight
-                                        className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-                                        aria-hidden="true"
-                                    />
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Achievements + CTA band */}
-            <section className="bg-slate-900">
-                <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24">
-                    <h2 className="text-center text-3xl md:text-4xl font-bold text-white tracking-tight mb-12">
-                        Our Achievements
-                    </h2>
-                    <dl className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-14">
-                        {ACHIEVEMENTS.map((stat) => (
-                            <div key={stat.label} className="text-center">
-                                <dt className="sr-only">{stat.label}</dt>
-                                <dd className="font-heading text-4xl md:text-5xl font-bold text-sky-400">
-                                    {stat.value}
-                                </dd>
-                                <p className="mt-2 text-sm md:text-base text-slate-300">
-                                    {stat.label}
-                                </p>
-                            </div>
-                        ))}
-                    </dl>
-                    <div className="flex flex-wrap items-center justify-center gap-4">
-                        <Button
-                            asChild
-                            size="lg"
-                            className="px-8 text-base font-semibold transition-colors duration-200"
-                        >
-                            <Link to="/contact">
-                                Contact Sales
+                                Talk to an expert about {title.toLowerCase()}
                                 <ArrowRight
-                                    className="ml-2 h-4 w-4"
+                                    className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
                                     aria-hidden="true"
                                 />
                             </Link>
-                        </Button>
-                        <Button
-                            asChild
-                            size="lg"
-                            variant="outline"
-                            className="px-8 text-base font-semibold bg-transparent text-white border-white/30 hover:bg-white/10 hover:text-white transition-colors duration-200"
-                        >
-                            <Link to="/solutions">Explore Solutions</Link>
-                        </Button>
-                    </div>
+                        </Card>
+                    ))}
                 </div>
-            </section>
+            </Section>
+
+            {/* Achievements */}
+            <Section border="y" padding="lg">
+                <h2 className="mb-12 text-center text-3xl md:text-4xl font-bold text-foreground tracking-tight">
+                    Our achievements
+                </h2>
+                <StatGrid stats={ACHIEVEMENTS} tone="accent" />
+            </Section>
+
+            <CtaBand
+                title="Ready to strengthen your defenses?"
+                description="Talk to our security experts about your environment, your risks, and the fastest path to a stronger posture."
+                primary={{ label: "Contact Sales", to: "/contact" }}
+                secondary={{ label: "Explore Solutions", to: "/solutions" }}
+            />
         </main>
     );
 };

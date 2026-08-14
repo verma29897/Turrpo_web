@@ -1,19 +1,65 @@
 <!doctype html>
-<html lang="en" class="dark">
+<!--
+  The site is light. `dark` is applied to subtrees only (the navy CTA bands,
+  the footer, the live traffic panel), never to <html>, so pages style
+  themselves with tokens and never hardcode a light-on-dark colour.
+-->
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="./src/assets/images/logo.png" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#060b18" />
+    <meta
+      name="description"
+      content="Bomis is a plug-and-play inline IDS/IPS appliance that sits between your modem and router, inspects every packet in real time and drops malicious traffic before it reaches your network. From Turrpo Ideas."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Turrpo Ideas" />
+    <meta
+      property="og:title"
+      content="Turrpo Ideas | Your Trusted Cyber Security Partner"
+    />
+    <meta
+      property="og:description"
+      content="Bomis is a plug-and-play inline IDS/IPS box that stops threats before they reach your router. Backed by Turrpo Ideas' security practice."
+    />
+    <meta name="twitter:card" content="summary" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Lexend:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>Turrpo Ideas</title>
+    <title>Turrpo Ideas | Your Trusted Cyber Security Partner</title>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div
+        style="
+          max-width: 40rem;
+          margin: 4rem auto;
+          padding: 0 1.5rem;
+          color: #f8fafc;
+          font-family: system-ui, sans-serif;
+          line-height: 1.6;
+        "
+      >
+        <h1 style="font-size: 1.5rem">Turrpo Ideas</h1>
+        <p>
+          This site needs JavaScript to run. Please enable it, or reach us
+          directly at
+          <a href="mailto:krishna@turrpo.com" style="color: #38bdf8"
+            >krishna@turrpo.com</a
+          >
+          or
+          <a href="tel:+917905968734" style="color: #38bdf8">+91 7905968734</a>.
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

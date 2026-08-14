@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
 import {
-    ArrowRight,
     Cloud,
     Crosshair,
     FileLock2,
@@ -9,7 +7,10 @@ import {
     Radar,
     ShieldCheck,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Card, CardDescription, CardIcon, CardTitle } from "@/components/ui/card";
+import { CtaBand } from "@/components/ui/cta-band";
+import { PageHero } from "@/components/ui/page-hero";
+import { Section } from "@/components/ui/section";
 
 const SOLUTIONS = [
     {
@@ -89,103 +90,48 @@ const SOLUTIONS = [
 const Solutions = () => {
     return (
         <main className="bg-background text-foreground">
-            {/* Header */}
-            <section className="bg-slate-900/50 border-b border-border">
-                <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24 text-center">
-                    <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-4">
-                        Cybersecurity Solutions
-                    </p>
-                    <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6 max-w-3xl mx-auto">
-                        Comprehensive Protection for Your Digital Assets
-                    </h1>
-                    <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                        At Turrpo Ideas, we offer cutting-edge cybersecurity
-                        solutions designed to protect your organization from
-                        evolving threats. Our comprehensive approach ensures
-                        your digital infrastructure remains secure, compliant,
-                        and resilient.
-                    </p>
-                </div>
-            </section>
+            <PageHero
+                eyebrow="Cybersecurity Solutions"
+                title="Comprehensive protection for your digital assets"
+                description="Cutting-edge solutions designed to protect your organization from evolving threats. Our comprehensive approach keeps your digital infrastructure secure, compliant, and resilient."
+            />
 
-            {/* Solutions grid */}
-            <section className="bg-background">
-                <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {SOLUTIONS.map(
-                            ({ icon: Icon, title, description, features }) => (
-                                <div
-                                    key={title}
-                                    className="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-200 hover:shadow-md hover:border-sky-500/60"
-                                >
-                                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-sky-500/10">
-                                        <Icon
-                                            className="h-5 w-5 text-primary"
+            <Section padding="lg">
+                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                    {SOLUTIONS.map(({ icon, title, description, features }) => (
+                        <Card key={title} hover className="flex flex-col">
+                            <CardIcon icon={icon} className="mb-4" />
+                            <CardTitle as="h2" className="mb-2">
+                                {title}
+                            </CardTitle>
+                            <CardDescription className="mb-5">
+                                {description}
+                            </CardDescription>
+                            <ul className="mt-auto space-y-2 border-t border-border pt-4">
+                                {features.map((feature) => (
+                                    <li
+                                        key={feature}
+                                        className="flex items-center gap-2 text-sm text-muted-foreground"
+                                    >
+                                        <ShieldCheck
+                                            className="h-4 w-4 shrink-0 text-primary"
                                             aria-hidden="true"
                                         />
-                                    </div>
-                                    <h2 className="text-lg font-semibold text-white mb-2">
-                                        {title}
-                                    </h2>
-                                    <p className="text-sm text-slate-400 leading-relaxed mb-5">
-                                        {description}
-                                    </p>
-                                    <ul className="mt-auto space-y-2 border-t border-border pt-4">
-                                        {features.map((feature) => (
-                                            <li
-                                                key={feature}
-                                                className="flex items-center gap-2 text-sm text-slate-300"
-                                            >
-                                                <ShieldCheck
-                                                    className="h-4 w-4 shrink-0 text-primary"
-                                                    aria-hidden="true"
-                                                />
-                                                {feature}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ),
-                        )}
-                    </div>
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                        </Card>
+                    ))}
                 </div>
-            </section>
+            </Section>
 
-            {/* CTA band */}
-            <section className="bg-slate-900">
-                <div className="max-w-4xl mx-auto px-4 md:px-6 py-16 md:py-20 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-                        Ready to Secure Your Organization?
-                    </h2>
-                    <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto mb-10">
-                        Contact us today to discuss how our solutions can
-                        protect your business.
-                    </p>
-                    <div className="flex flex-wrap items-center justify-center gap-4">
-                        <Button
-                            asChild
-                            size="lg"
-                            className="px-8 text-base font-semibold transition-colors duration-200"
-                        >
-                            <Link to="/contact">
-                                Get Started
-                                <ArrowRight
-                                    className="ml-2 h-4 w-4"
-                                    aria-hidden="true"
-                                />
-                            </Link>
-                        </Button>
-                        <Button
-                            asChild
-                            size="lg"
-                            variant="outline"
-                            className="px-8 text-base font-semibold bg-transparent text-white border-white/30 hover:bg-white/10 hover:text-white transition-colors duration-200"
-                        >
-                            <Link to="/case-studies">View Case Studies</Link>
-                        </Button>
-                    </div>
-                </div>
-            </section>
+            <CtaBand
+                title="Ready to secure your organization?"
+                description="Contact us today to discuss how these solutions map onto your environment."
+                primary={{ label: "Get Started", to: "/contact" }}
+                secondary={{ label: "See the Product", to: "/product" }}
+            />
         </main>
     );
 };

@@ -15,50 +15,69 @@ import {
     ShoppingCart,
     UserCog,
 } from "lucide-react";
+import { InlineDiagram } from "@/components/product/InlineDiagram";
 import { BackgroundPaths } from "@/components/ui/background-paths";
 import { Button } from "@/components/ui/button";
+import { Card, CardIcon } from "@/components/ui/card";
+import { CtaBand } from "@/components/ui/cta-band";
+import { PageHeader } from "@/components/ui/page-header";
+import { Section } from "@/components/ui/section";
+import { StatGrid } from "@/components/ui/stat-grid";
+import { PRODUCT } from "@/constants/product";
+import { SITE } from "@/constants/site";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
 /* 1. Hero                                                             */
 /* ------------------------------------------------------------------ */
 
+/*
+ * Full-height opening hero with the animated network canvas, and the only
+ * near-black surface on the site. Everything below it, on this page and every
+ * other, is light.
+ *
+ * `dark` opts the subtree into the dark-variant utilities BackgroundPaths uses
+ * for its headline and canvas; `dark-slate` then swaps the navy token values
+ * for the near-black ones (see tailwind.css). Both are needed, in that order.
+ */
 function HeroSection() {
     return (
-        <BackgroundPaths
-            title="Turrpo Ideas"
-            subtitle="Your Trusted Cyber Security Partner"
-            description="From network and cloud security to 24/7 threat monitoring, our experts stay ahead of the latest threats so your business remains secure."
-            className="min-h-[calc(100vh-75px)] bg-background"
-            variant="network"
-            actions={
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                    <Button
-                        asChild
-                        size="lg"
-                        className="px-8 text-base font-semibold shadow-lg shadow-sky-900/20 transition-colors duration-200"
-                    >
-                        <Link to="/contact">
-                            Contact Sales
-                            <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                        </Link>
-                    </Button>
-                    <Button
-                        asChild
-                        size="lg"
-                        variant="outline"
-                        className="px-8 text-base font-semibold bg-white/5 text-white border-white/20 hover:bg-white/10 hover:text-white backdrop-blur transition-colors duration-200"
-                    >
-                        <Link to="/services">Explore Services</Link>
-                    </Button>
-                </div>
-            }
-        />
+        <div className="dark dark-slate">
+            <BackgroundPaths
+                title={SITE.name}
+                subtitle={SITE.tagline}
+                description="From network and cloud security to 24/7 threat monitoring, our experts stay ahead of the latest threats so your business remains secure."
+                className="min-h-[calc(100vh-75px)] bg-background"
+                variant="network"
+                actions={
+                    <div className="flex flex-wrap items-center justify-center gap-4">
+                        <Button
+                            asChild
+                            size="lg"
+                            className="px-8 text-base font-semibold transition-colors duration-200"
+                        >
+                            <Link to="/product">
+                                See the Product
+                                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                            </Link>
+                        </Button>
+                        <Button
+                            asChild
+                            size="lg"
+                            variant="outline"
+                            className="border-2 border-primary bg-transparent px-8 text-base font-semibold text-primary transition-colors duration-200 hover:bg-primary/10 hover:text-primary"
+                        >
+                            <Link to="/contact">Contact Sales</Link>
+                        </Button>
+                    </div>
+                }
+            />
+        </div>
     );
 }
 
 /* ------------------------------------------------------------------ */
-/* 2. Trust signals — stats reused from the Services page              */
+/* 2. Trust signals                                                    */
 /* ------------------------------------------------------------------ */
 
 const STATS = [
@@ -77,44 +96,30 @@ const CAPABILITIES = [
 
 function TrustSection() {
     return (
-        <section className="bg-slate-900/50 border-y border-border">
-            <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20">
-                <p className="text-center text-sm font-semibold uppercase tracking-widest text-primary mb-10">
-                    Security you can verify
-                </p>
+        <Section tone="muted" border="y">
+            <p className="mb-10 text-center text-sm font-semibold uppercase tracking-widest text-primary">
+                Security you can verify
+            </p>
 
-                <dl className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-                    {STATS.map((stat) => (
-                        <div key={stat.label} className="text-center">
-                            <dt className="sr-only">{stat.label}</dt>
-                            <dd className="font-heading text-4xl md:text-5xl font-bold text-white">
-                                {stat.value}
-                            </dd>
-                            <p className="mt-2 text-sm md:text-base text-muted-foreground">
-                                {stat.label}
-                            </p>
-                        </div>
-                    ))}
-                </dl>
+            <StatGrid stats={STATS} className="mb-12" />
 
-                <ul className="flex flex-wrap justify-center gap-3">
-                    {CAPABILITIES.map(({ icon: Icon, label }) => (
-                        <li
-                            key={label}
-                            className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-slate-300 shadow-sm"
-                        >
-                            <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
-                            {label}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </section>
+            <ul className="flex flex-wrap justify-center gap-3">
+                {CAPABILITIES.map(({ icon: Icon, label }) => (
+                    <li
+                        key={label}
+                        className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm"
+                    >
+                        <Icon className="h-4 w-4 text-primary" aria-hidden="true" />
+                        {label}
+                    </li>
+                ))}
+            </ul>
+        </Section>
     );
 }
 
 /* ------------------------------------------------------------------ */
-/* 3. Solutions by Industry — accessible tabs                          */
+/* 3. Solutions by Industry: accessible tabs                          */
 /* ------------------------------------------------------------------ */
 
 const INDUSTRIES = [
@@ -208,80 +213,71 @@ function IndustrySection() {
     };
 
     return (
-        <section className="bg-background">
-            <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24">
-                <div className="text-center max-w-2xl mx-auto mb-10">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-                        Solutions by Industry
-                    </h2>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                        Every industry has its own threat landscape. Pick yours
-                        to see how we protect it.
-                    </p>
-                </div>
+        <Section tone="muted" border="y" padding="lg">
+            <PageHeader
+                title="Solutions by industry"
+                description="Every industry has its own threat landscape. Pick yours to see how we protect it."
+                className="mb-10"
+            />
 
-                <div
-                    role="tablist"
-                    aria-label="Industries"
-                    className="flex flex-wrap justify-center gap-2 mb-8"
-                >
-                    {INDUSTRIES.map((industry, index) => (
-                        <button
-                            key={industry.id}
-                            ref={(el) => {
-                                tabRefs.current[index] = el;
-                            }}
-                            role="tab"
-                            id={`tab-${industry.id}`}
-                            aria-selected={active === industry.id}
-                            aria-controls={`panel-${industry.id}`}
-                            tabIndex={active === industry.id ? 0 : -1}
-                            onClick={() => setActive(industry.id)}
-                            onKeyDown={(e) => onTabKeyDown(e, index)}
-                            className={cn(
-                                "cursor-pointer rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-200",
-                                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                                active === industry.id
-                                    ? "bg-sky-400 text-slate-950 border-sky-400"
-                                    : "bg-card text-slate-400 border-border hover:text-white hover:border-slate-500",
-                            )}
-                        >
-                            {industry.label}
-                        </button>
-                    ))}
-                </div>
+            <div
+                role="tablist"
+                aria-label="Industries"
+                className="mb-8 flex flex-wrap justify-center gap-2"
+            >
+                {INDUSTRIES.map((industry, index) => (
+                    <button
+                        key={industry.id}
+                        ref={(el) => {
+                            tabRefs.current[index] = el;
+                        }}
+                        role="tab"
+                        id={`tab-${industry.id}`}
+                        aria-selected={active === industry.id}
+                        aria-controls={`panel-${industry.id}`}
+                        tabIndex={active === industry.id ? 0 : -1}
+                        onClick={() => setActive(industry.id)}
+                        onKeyDown={(e) => onTabKeyDown(e, index)}
+                        className={cn(
+                            "cursor-pointer rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-200",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                            active === industry.id
+                                ? "bg-primary text-primary-foreground border-primary"
+                                : "bg-card text-muted-foreground border-border hover:text-foreground hover:border-primary/50",
+                        )}
+                    >
+                        {industry.label}
+                    </button>
+                ))}
+            </div>
 
-                <div
-                    role="tabpanel"
-                    id={`panel-${current.id}`}
-                    aria-labelledby={`tab-${current.id}`}
-                    className="rounded-xl border border-border bg-card p-8 md:p-10 shadow-sm"
-                >
-                    <div className="flex items-start gap-4 mb-6">
-                        <div className="rounded-lg bg-sky-500/10 p-3">
-                            <current.icon
-                                className="h-6 w-6 text-primary"
-                                aria-hidden="true"
-                            />
-                        </div>
+            <Card
+                asChild
+                padding="lg"
+                id={`panel-${current.id}`}
+                aria-labelledby={`tab-${current.id}`}
+            >
+                <div role="tabpanel" tabIndex={0}>
+                    <div className="mb-6 flex items-start gap-4">
+                        <CardIcon icon={current.icon} />
                         <div>
-                            <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
+                            <h3 className="mb-2 text-xl md:text-2xl font-semibold text-foreground">
                                 {current.headline}
                             </h3>
-                            <p className="text-muted-foreground leading-relaxed max-w-3xl">
+                            <p className="max-w-3xl text-muted-foreground leading-relaxed">
                                 {current.body}
                             </p>
                         </div>
                     </div>
 
-                    <ul className="grid sm:grid-cols-2 gap-3 mb-8">
+                    <ul className="mb-8 grid gap-3 sm:grid-cols-2">
                         {current.points.map((point) => (
                             <li
                                 key={point}
-                                className="flex items-start gap-3 text-slate-300"
+                                className="flex items-start gap-3 text-muted-foreground"
                             >
                                 <ShieldCheck
-                                    className="h-5 w-5 mt-0.5 shrink-0 text-primary"
+                                    className="mt-0.5 h-5 w-5 shrink-0 text-primary"
                                     aria-hidden="true"
                                 />
                                 {point}
@@ -291,7 +287,9 @@ function IndustrySection() {
 
                     <Link
                         to="/solutions"
-                        className="group inline-flex items-center gap-2 text-sm font-semibold text-primary cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        className="group inline-flex cursor-pointer items-center gap-2 rounded-md text-sm font-semibold text-primary
+                        transition-colors duration-200 hover:text-primary/80
+                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     >
                         Explore {current.label} solutions
                         <ArrowRight
@@ -300,13 +298,76 @@ function IndustrySection() {
                         />
                     </Link>
                 </div>
-            </div>
-        </section>
+            </Card>
+        </Section>
     );
 }
 
 /* ------------------------------------------------------------------ */
-/* 4. Solutions by Role — "I am a…" path selection                     */
+/* 3.5 Product spotlight                                               */
+/* ------------------------------------------------------------------ */
+
+/*
+ * The site exists to promote the appliance, so the home page says what it is
+ * before it talks about consulting. Copy is pulled from constants/product.ts
+ * rather than restated, so the pitch can never drift from the product page.
+ */
+function ProductSection() {
+    return (
+        <Section border="y" padding="lg">
+            <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr]">
+                <div>
+                    <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-primary">
+                        Our product
+                    </p>
+                    <h2 className="font-heading text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+                        Stop threats before they reach your router
+                    </h2>
+                    <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
+                        {PRODUCT.subheadline}
+                    </p>
+
+                    <ul className="mt-7 flex flex-wrap gap-2">
+                        {PRODUCT.highlights.map((item) => (
+                            <li
+                                key={item}
+                                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-sm text-muted-foreground"
+                            >
+                                <ShieldCheck
+                                    className="h-3.5 w-3.5 text-primary"
+                                    aria-hidden="true"
+                                />
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+
+                    <div className="mt-9 flex flex-wrap items-center gap-4">
+                        <Button asChild size="lg" className="px-8 text-base font-semibold">
+                            <Link to="/product">
+                                See the product
+                                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                            </Link>
+                        </Button>
+                        <Button
+                            asChild
+                            size="lg"
+                            variant="outline"
+                            className="px-8 text-base font-semibold"
+                        >
+                            <Link to="/product#live">Watch it working</Link>
+                        </Button>
+                    </div>
+                </div>
+
+                <InlineDiagram />
+            </div>
+        </Section>
+    );
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Solutions by Role: "I am a…" path selection                     */
 /* ------------------------------------------------------------------ */
 
 const ROLES = [
@@ -329,7 +390,7 @@ const ROLES = [
         title: "Compliance Officer",
         description:
             "Map controls to frameworks, prepare for audits, and keep evidence organized year-round.",
-        to: "/compliance",
+        to: "/services",
     },
     {
         icon: Briefcase,
@@ -342,37 +403,22 @@ const ROLES = [
 
 function RoleSection() {
     return (
-        <section className="bg-slate-900/50 border-y border-border">
-            <div className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-24">
-                <div className="text-center max-w-2xl mx-auto mb-10">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-                        Where should you start?
-                    </h2>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                        Tell us who you are and we&apos;ll point you at the
-                        right first step.
-                    </p>
-                </div>
+        <Section border="b" padding="lg">
+            <PageHeader
+                title="Where should you start?"
+                description="Tell us who you are and we'll point you at the right first step."
+                className="mb-10"
+            />
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    {ROLES.map(({ icon: Icon, title, description, to }) => (
-                        <Link
-                            key={title}
-                            to={to}
-                            className="group flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm cursor-pointer
-                            transition-all duration-200 hover:shadow-md hover:border-sky-500/60
-                            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                        >
-                            <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-sky-500/10">
-                                <Icon
-                                    className="h-5 w-5 text-primary"
-                                    aria-hidden="true"
-                                />
-                            </div>
-                            <h3 className="text-base font-semibold text-white mb-2">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                {ROLES.map(({ icon, title, description, to }) => (
+                    <Card key={title} asChild interactive>
+                        <Link to={to} className="group flex flex-col">
+                            <CardIcon icon={icon} className="mb-4" />
+                            <h3 className="mb-2 text-base font-semibold text-foreground">
                                 I am a {title}
                             </h3>
-                            <p className="text-sm text-slate-400 leading-relaxed mb-4 flex-1">
+                            <p className="mb-4 flex-1 text-sm text-muted-foreground leading-relaxed">
                                 {description}
                             </p>
                             <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
@@ -383,51 +429,10 @@ function RoleSection() {
                                 />
                             </span>
                         </Link>
-                    ))}
-                </div>
+                    </Card>
+                ))}
             </div>
-        </section>
-    );
-}
-
-/* ------------------------------------------------------------------ */
-/* 5. Contact Sales band                                               */
-/* ------------------------------------------------------------------ */
-
-function ContactSection() {
-    return (
-        <section className="bg-slate-900">
-            <div className="max-w-4xl mx-auto px-4 md:px-6 py-16 md:py-24 text-center">
-                <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-                    Ready to Secure Your Organization?
-                </h2>
-                <p className="text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto mb-10">
-                    Talk to our security experts about your environment, your
-                    risks, and the fastest path to a stronger posture.
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                    <Button
-                        asChild
-                        size="lg"
-                        className="px-8 text-base font-semibold transition-colors duration-200"
-                    >
-                        <Link to="/contact">
-                            Contact Sales
-                            <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                        </Link>
-                    </Button>
-                    <Button
-                        asChild
-                        size="lg"
-                        variant="outline"
-                        className="px-8 text-base font-semibold bg-transparent text-white border-white/30
-                        hover:bg-white/10 hover:text-white transition-colors duration-200"
-                    >
-                        <Link to="/case-studies">View Case Studies</Link>
-                    </Button>
-                </div>
-            </div>
-        </section>
+        </Section>
     );
 }
 
@@ -438,9 +443,15 @@ const Home = () => {
         <main className="bg-background text-foreground">
             <HeroSection />
             <TrustSection />
+            <ProductSection />
             <IndustrySection />
             <RoleSection />
-            <ContactSection />
+            <CtaBand
+                title="Ready to secure your organization?"
+                description="Talk to our security experts about your environment, your risks, and the fastest path to a stronger posture."
+                primary={{ label: "Contact Sales", to: "/contact" }}
+                secondary={{ label: "See the Product", to: "/product" }}
+            />
         </main>
     );
 };
